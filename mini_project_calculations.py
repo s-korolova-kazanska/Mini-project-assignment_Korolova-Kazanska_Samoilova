@@ -11,3 +11,8 @@ data["Signal"] = 0
 data.loc[data["ShortMovAvg"] > data["LongMovAvg"], "Signal"] = 1
 
 print(data)
+
+compare = data["Signal"].diff()
+data["Action"] = "Утримання"
+data.loc[compare < 0, "Action"] = "Продаж"
+data.loc[compare > 0, "Action"] = "Купівля"
