@@ -21,3 +21,13 @@ data["Profit"] = data["Close"].diff()
 data["Pr&L"] = data["Profit"] * data["Signal"]
 print(f"{(data["Pr&L"].sum()):.2f}")
 
+plt.plot(data.index, data["Close"], label="Price", color="pink")
+plt.plot(data.index, data["ShortMovAvg"], label="ShortMovAvg", color="blue")
+plt.plot(data.index, data["LongMovAvg"], label="LongMovAvg", color="red")
+
+plt.scatter(data[data["Action"] == "Купівля"].index, data[data["Action"] == "Купівля"]["Close"], label="Buy", color="green")
+plt.scatter(data[data["Action"] == "Продаж"].index, data[data["Action"] == "Продаж"]["Close"], label="Sell", color="red")
+plt.legend()
+
+
+plt.show()
