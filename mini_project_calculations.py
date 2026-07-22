@@ -16,3 +16,8 @@ compare = data["Signal"].diff()
 data["Action"] = "Утримання"
 data.loc[compare < 0, "Action"] = "Продаж"
 data.loc[compare > 0, "Action"] = "Купівля"
+
+data["Profit"] = data["Close"].diff()
+data["Pr&L"] = data["Profit"] * data["Signal"]
+print(f"{(data["Pr&L"].sum()):.2f}")
+
